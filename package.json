@@ -1,0 +1,16 @@
+{
+  "name": "agent-capability-policy-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline original AI agent permission review and policy simulator",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "demo": "node bin/audit.mjs examples/cases.json",
+    "stage": "node scripts/stage-site.mjs",
+    "check:site": "node scripts/check-site.mjs",
+    "browser:smoke": "node scripts/browser-check.mjs"
+  },
+  "license": "MIT"
+}

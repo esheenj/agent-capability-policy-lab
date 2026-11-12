@@ -1,0 +1,18 @@
+{
+  "description": "Fictional examples only: no identity, access or execution.",
+  "asOf": "2030-01-01T12:00:00Z",
+  "registry": [
+    {"id":"reader-demo","status":"ACTIVE","expiresAt":"2032-01-01T00:00:00Z","scopes":["public.read","content.summarize"]},
+    {"id":"publisher-demo","status":"ACTIVE","expiresAt":"2032-01-01T00:00:00Z","scopes":["public.read","content.publish"]},
+    {"id":"revoked-demo","status":"REVOKED","expiresAt":"2032-01-01T00:00:00Z","scopes":["public.read"]},
+    {"id":"expired-demo","status":"ACTIVE","expiresAt":"2028-01-01T00:00:00Z","scopes":["public.read"]}
+  ],
+  "requests": [
+    {"agentId":"reader-demo","action":"READ_PUBLIC"},
+    {"agentId":"reader-demo","action":"WRITE_RECORD","claimedFullAccess":true},
+    {"agentId":"revoked-demo","action":"READ_PUBLIC"},
+    {"agentId":"expired-demo","action":"READ_PUBLIC"},
+    {"agentId":"publisher-demo","action":"PUBLISH_DRAFT"},
+    {"agentId":"publisher-demo","action":"TRANSFER_FUNDS","claimedFullAccess":true}
+  ]
+}

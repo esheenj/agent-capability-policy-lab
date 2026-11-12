@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="Inspect fictional AI agent capabilities, revoked enrollments and high-impact requests in a safe, offline policy playground.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Agent Capability Policy Lab · Esheen Labs</title>
+<style>
+:root{font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;color-scheme:dark;--bg:#08120d;--panel:#13221a;--panel2:#1a3022;--line:#355240;--white:#f2f9f2;--dim:#aec5b3;--green:#b8f58e;--mint:#77e4ab;--red:#ffa6a6;--amber:#ffd289}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--white);background:radial-gradient(ellipse 55% 27% at 85% 4%,#39754a48,transparent 82%),var(--bg)}
+a{color:var(--green);text-underline-offset:.2em}a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.wrap{width:min(100% - 2rem,71rem);margin-inline:auto}.skip{position:absolute;left:1rem;top:-5rem;z-index:10;background:var(--green);color:#07130b;padding:.5rem 1rem}.skip:focus{top:.5rem}
+.top{border-bottom:1px solid #fff2;min-height:4.7rem;display:flex;align-items:center}.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{display:flex;gap:.7rem;align-items:center;text-decoration:none;color:var(--white);font-weight:800;letter-spacing:.05em}.symbol{width:2.4rem;height:2.4rem;display:grid;place-items:center;background:linear-gradient(145deg,#204c31,#102118);border:1px solid #a6eea977;border-radius:.7rem;color:var(--green);font-size:1.5rem}
+.logo small{display:block;color:var(--mint);letter-spacing:.2em;font-size:.6rem}.nav-links{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.82rem}.nav-links a{text-decoration:none}
+.hero{padding:clamp(2.8rem,6vw,5rem) 0 2rem;max-width:62rem}.kicker{font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}h1{font-size:clamp(2.55rem,6.4vw,5.2rem);line-height:1.05;letter-spacing:-.065em;margin:.9rem 0 1.2rem}h1 em{font-style:normal;color:var(--green)}.lead{font-size:clamp(1.04rem,2vw,1.3rem);color:var(--dim);max-width:56ch;margin-bottom:1.5rem}
+.pills{display:flex;flex-wrap:wrap;gap:.6rem}.pill{border:1px solid #a0d2a455;border-radius:3rem;color:#cae4cd;padding:.37rem .75rem;font-size:.72rem}.workbench{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:1.1rem;margin:2rem 0}
+.panel{border:1px solid #ffffff2b;background:linear-gradient(160deg,#172b1d,#0e1c14);border-radius:1.15rem;padding:clamp(1rem,3vw,1.8rem);min-width:0;box-shadow:0 25px 55px #0002}
+.panel h2{font-size:1.48rem;letter-spacing:-.03em;line-height:1.2;margin:.4rem 0}.panel p{color:var(--dim)}.section-number{color:var(--mint);font-size:.7rem;letter-spacing:.15em;font-weight:800;text-transform:uppercase}
+.scenarios{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;margin:1.25rem 0}
+button{font:inherit;cursor:pointer;min-height:46px;transition:background .2s,border-color .2s,transform .2s}
+.preset{padding:.8rem .8rem;text-align:left;border:1px solid #567a603e;border-radius:.7rem;background:#ffffff0b;color:var(--white);font-size:.84rem;font-weight:720}
+.preset:hover,.preset[aria-pressed="true"]{background:#b7f58a17;border-color:#a6e98eaa}.preset small{display:block;color:var(--dim);font-weight:400;font-size:.72rem;margin-top:.2rem}
+fieldset{padding:0;border:0;margin:1rem 0}label{display:block;font-size:.82rem;color:#d7ebd9;font-weight:700;margin:0 0 .45rem}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+select{width:100%;min-height:48px;border-radius:.65rem;border:1px solid var(--line);background:#0c1b12;color:var(--white);font:inherit;padding:.6rem}.claim{display:flex;align-items:flex-start;gap:.6rem;font-size:.84rem;color:var(--dim);font-weight:500;margin:1.2rem 0}.claim input{width:1.1rem;height:1.1rem;accent-color:var(--green);flex:none;margin-top:.3rem}
+.run{width:100%;border:1px solid var(--green);border-radius:.7rem;background:var(--green);color:#091d0e;font-weight:800;padding:.7rem}.run:hover{background:#d0ffb0;transform:translateY(-1px)}
+.status-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin:1.1rem 0}.status{font-size:.72rem;font-weight:820;letter-spacing:.08em;padding:.45rem .75rem;border-radius:99px;border:1px solid var(--green);color:var(--green)}body[data-state="DENY"] .status{border-color:var(--red);color:var(--red)}body[data-state="REVIEW_REQUIRED"] .status{border-color:var(--amber);color:var(--amber)}
+#summary{color:var(--white);font-size:.9rem}#checks{display:grid;gap:.55rem;list-style:none;margin:1rem 0;padding:0}.check{display:flex;align-items:start;gap:.8rem;padding:.85rem;background:#ffffff08;border:1px solid #ffffff1d;border-radius:.7rem}.dot{width:.58rem;height:.58rem;border-radius:99px;flex:none;background:var(--green);margin-top:.43rem}.check[data-check="FAIL"] .dot{background:var(--red)}.check[data-check="IGNORED"] .dot{background:var(--amber)}.check strong{display:block;font-size:.84rem}.check p{margin:.2rem 0 0;font-size:.76rem}
+.next{border:1px solid #a6e9ac42;border-radius:.8rem;background:#adf7b70c;padding:1rem;margin:1rem 0}.next strong{font-size:.81rem;color:var(--mint)}.next p{font-size:.83rem;margin:.3rem 0}
+details{border-top:1px solid #ffffff25;padding-top:.8rem;margin-top:1rem;color:var(--dim);font-size:.82rem}summary{cursor:pointer;min-height:44px;padding:.5rem 0;color:var(--green);font-weight:750}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;border-radius:.7rem;background:#07130b;border:1px solid #ffffff1c;padding:1rem;font:.7rem/1.6 ui-monospace,monospace}
+.footnotes{border-top:1px solid #ffffff24;padding:2rem 0 4rem;color:var(--dim);font-size:.86rem}.footnotes h2{font-size:1.25rem;color:var(--white);margin:.2rem 0}
+@media(max-width:760px){.workbench{grid-template-columns:1fr}.hero{padding-top:3rem}}
+@media(max-width:480px){.wrap{width:min(100% - 1.35rem,71rem)}.fields,.scenarios{grid-template-columns:1fr}.nav-links{gap:.55rem;font-size:.7rem}.logo{font-size:.82rem}.symbol{width:2rem;height:2rem}h1{font-size:clamp(2.45rem,11vw,3.6rem)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body data-state="PENDING">
+<a class="skip" href="#main">Skip to playground</a>
+<header class="top"><div class="wrap nav"><a class="logo" href="https://esheenj.github.io/compound-intelligence-starter/"><span class="symbol" aria-hidden="true">Σ</span><span>ESHEEN LABS<small>OPEN INTELLIGENCE</small></span></a><nav class="nav-links" aria-label="Useful links"><a href="https://esheenj.github.io/compound-intelligence-starter/">All projects</a><a href="https://github.com/esheenj/agent-capability-policy-lab">Source</a></nav></div></header>
+<main class="wrap" id="main">
+<section class="hero" aria-labelledby="title"><p class="kicker">Agent systems / Interactive playground</p><h1>Can an AI agent <em>do that?</em></h1><p class="lead">Before an agent touches a system, inspect what it wants to do. Test fictional permissions, revocation, expiration and high-impact actions in a safe, offline sandbox.</p><div class="pills"><span class="pill">No account</span><span class="pill">Zero external requests</span><span class="pill">Source available</span><span class="pill">Fictional registry only</span></div></section>
+<div class="workbench">
+<section class="panel" aria-labelledby="request-title"><p class="section-number">01 / Request builder</p><h2 id="request-title">Choose a scenario</h2><p>Start with a common situation or change the simulated agent and action yourself.</p>
+<div class="scenarios" aria-label="Example agent scenarios">
+<button class="preset" type="button" data-scenario="safe" aria-pressed="true">Public research<small>Low-impact read</small></button>
+<button class="preset" type="button" data-scenario="escalation" aria-pressed="false">Scope escalation<small>Agent claims extra access</small></button>
+<button class="preset" type="button" data-scenario="review" aria-pressed="false">Publishing action<small>Needs human review</small></button>
+<button class="preset" type="button" data-scenario="revoked" aria-pressed="false">Revoked identity<small>Registration no longer active</small></button>
+<button class="preset" type="button" data-scenario="transfer" aria-pressed="false">Financial transfer<small>Always excluded</small></button>
+</div>
+<fieldset><div class="fields"><div><label for="agent">Fictional enrolled agent</label><select id="agent"><option value="reader-demo">Research assistant</option><option value="publisher-demo">Content publisher</option><option value="revoked-demo">Revoked agent</option><option value="expired-demo">Expired agent</option></select></div>
+<div><label for="action">Requested action</label><select id="action"><option value="READ_PUBLIC">Read public document</option><option value="SUMMARIZE">Summarize public notes</option><option value="PUBLISH_DRAFT">Publish a draft</option><option value="WRITE_RECORD">Modify a record</option><option value="TRANSFER_FUNDS">Transfer funds</option></select></div></div>
+<label class="claim" for="claim"><input type="checkbox" id="claim"> The agent claims to have full access (untrusted self-report)</label>
+<button class="run" id="run" type="button">Evaluate fictional request ↗</button></fieldset>
+<p><small>The example uses a fixed fictional reference date (1 January 2030). Changing anything here never calls a model, registry service, agent or exchange.</small></p>
+</section>
+<section class="panel" aria-labelledby="evidence-title"><p class="section-number">02 / Decision explorer</p><h2 id="evidence-title">Permission gates, explained</h2><div class="status-row"><span id="status" class="status" role="status" aria-live="polite">PREPARING</span><span id="summary">Checking sample policy…</span></div>
+<ol id="checks" aria-label="Policy checks"></ol><div class="next"><strong>What happens next?</strong><p id="next">No action is ever executed by this simulation.</p></div>
+<details><summary>Inspect structured evaluation receipt</summary><pre id="receipt"></pre></details>
+</section>
+</div>
+<section class="footnotes" aria-labelledby="limits"><h2 id="limits">An educational policy check, not authorization.</h2><p>This public experiment checks a caller-controlled fictional registry. Even SIMULATION_PASS does not verify cryptographic identity, independent enrollment, consent or server-side enforcement. Real systems need signed challenge verification, trusted registries, durable replay protection, audit logs and an external human authority for consequential actions.</p><p>No customer data, credentials, trading logic, network APIs, remote execution or payment infrastructure are included. <a href="https://github.com/esheenj/agent-capability-policy-lab">Read source, tests and limitations</a> · <a href="https://esheenj.github.io/compound-intelligence-starter/">Explore more Esheen Labs projects</a>.</p></section>
+</main>
+<script type="module" src="./app.mjs"></script>
+</body></html>

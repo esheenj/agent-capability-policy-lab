@@ -1,0 +1,51 @@
+name: Publish tested offline Agent Capability Policy Lab
+on:
+  workflow_run:
+    workflows: ["Tests"]
+    branches: [main]
+    types: [completed]
+permissions:
+  contents: read
+concurrency:
+  group: agent-policy-lab-pages
+  cancel-in-progress: false
+jobs:
+  pages:
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      actions: read
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          persist-credentials: false
+      - name: Reject stale source if main moved
+        env:
+          EXPECTED_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$EXPECTED_SHA"
+          git fetch --no-tags origin main
+          test "$(git rev-parse origin/main)" = "$EXPECTED_SHA"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Re-check and stage reviewed source only
+        run: |
+          npm test
+          npm run check:site
+          npm run stage
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/pages
+      - uses: actions/deploy-pages@v4
+        id: deployment
