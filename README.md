@@ -1,5 +1,7 @@
 # Agent Capability Policy Lab
 
+**Support this open-source project (optional):** [Esheen Labs crypto support](https://esheenj.github.io/compound-intelligence-starter/support.html) accepts maintainer-supplied BTC on Bitcoin and USDT on Solana, Ethereum/ERC-20 or Tron/TRC-20. The destination addresses are **custodial Pionex exchange deposits** and may change; check the exact network, current address and minimum before sending. Contributions do not buy priority, access or execution authority. All demos and source remain free.
+
 **Before an AI agent acts, inspect what it can actually request.**
 
 An original, standalone **offline agent-permission sandbox** from Esheen Labs. Check an invented agent's registration, revocation, expiration and scoped capabilities. High-impact actions are routed to simulated human review; money movement is always excluded. The tool makes no real identity, authorization or execution claims.
