@@ -1,5 +1,12 @@
 # Agent Capability Policy Lab
 
+**Public product definition:** a bounded, deterministic **AI agent permission review playground** for developers building tool-using agents. It accepts fictional enrolled scopes, timestamps, risk classifications and requested actions, then explains whether a request would be denied, held for review or admitted **only inside the simulation**.
+
+**For AI engineering teams:** practise least-privilege decisions, identify false self-claimed access and examine expiry/revocation cases before designing real server-side enforcement. **Try:** [the offline browser lab](https://esheenj.github.io/agent-capability-policy-lab/). **Complementary demo:** [Agent Invocation Replay Lab](https://esheenj.github.io/agent-invocation-replay-lab/) for ordered request/revocation and duplicate handling.
+
+**Possible professional follow-through:** Sigma Code can separately scope agent-integration threat-model and permission-design reviews. The MIT example remains free; it does not provide live identity verification, security certification, production authorization, customer deployment or a booked service. Keep commercial briefs private rather than publishing secrets to GitHub issues.
+
+
 **Support this open-source project (optional):** [Esheen Labs crypto support](https://esheenj.github.io/compound-intelligence-starter/support.html) accepts maintainer-supplied BTC on Bitcoin and USDT on Solana, Ethereum/ERC-20 or Tron/TRC-20. The destination addresses are **custodial Pionex exchange deposits** and may change; check the exact network, current address and minimum before sending. Contributions do not buy priority, access or execution authority. All demos and source remain free.
 
 **Before an AI agent acts, inspect what it can actually request.**
